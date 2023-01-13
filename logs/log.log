@@ -1,4 +1,5 @@
-[INFO ] 2023-01-12 21:05:35,454 BaseClass.request_should_be_successfull_with_status_code_for_get_all_programs() - Get Request to fetch all program data is successfull
-[INFO ] 2023-01-12 21:05:36,458 BaseClass.not_found_error_message_should_be_displayed_with_status_code_for_get_all_programs() - Get Request unsuccessful
-[INFO ] 2023-01-12 21:05:38,757 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program() - Get Request unsuccessful
-[INFO ] 2023-01-12 21:05:39,067 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_with_invalid_input() - Get Request unsuccessful
+[INFO ] 2023-01-12 22:10:21,595 BaseClass.request_should_be_successfull_with_status_code_for_get_all_programs() - Get Request to fetch all program data is successfull
+[INFO ] 2023-01-12 22:10:22,291 BaseClass.not_found_error_message_should_be_displayed_with_status_code_for_get_all_programs() - Status code 404 received for GET all program with invalid URL
+[INFO ] 2023-01-12 22:10:23,589 BaseClass.request_should_be_successfull_with_status_code_for_get_single_program() - Get Request to fetch single program data is successful
+[INFO ] 2023-01-12 22:10:23,992 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program() - Status code 400 received for GET single program with invalid program ID
+[INFO ] 2023-01-12 22:10:24,232 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_with_invalid_input() - Status code 400 received for GET single program with invalid input *

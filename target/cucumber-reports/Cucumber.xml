@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="5" time="10.208">
-<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data in valid URL" time="5.982">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="5" time="16.801">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data in valid URL" time="13.615">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL..............passed
 When User sends GET request.................................................passed
 Then Request should be successfull with status code "200" for GET All programs.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data with invalid URL" time="0.914">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data with invalid URL" time="0.553">
 <system-out><![CDATA[Given User sets request for Program module with invalid base URL............passed
-When User sends GET request.................................................passed
+When User sends GET request with invalid URL................................passed
 Then Not found error message should be displayed with status code "404" for GET All programs.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with valid program ID" time="1.958">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with valid program ID" time="1.283">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and valid path.passed
 When User sends GET request with valid program ID from "getsingleprogram" and 0.passed
 Then Request should be successfull with status code "200" for GET single program.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid program ID" time="0.288">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid program ID" time="0.384">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid path.passed
 When User sends GET request with invalid program ID.........................passed
 Then Bad request error message should be displayed with status code "400" for GET single program.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid input" time="0.285">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid input" time="0.23">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid path.passed
 When User sends GET request with invalid input..............................passed
 Then Bad request error message should be displayed with status code "400" for GET single program with invalid input.passed

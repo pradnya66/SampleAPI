@@ -11,7 +11,7 @@ public class BaseClass {
 
 	public String randomestring()
 	{
-		String generateinvalidID=RandomStringUtils.random(4);
+		String generateinvalidID=RandomStringUtils.randomNumeric(4);
 		return(generateinvalidID);
 	}
 
