@@ -1,0 +1,4 @@
+[INFO ] 2023-01-12 21:05:35,454 BaseClass.request_should_be_successfull_with_status_code_for_get_all_programs() - Get Request to fetch all program data is successfull
+[INFO ] 2023-01-12 21:05:36,458 BaseClass.not_found_error_message_should_be_displayed_with_status_code_for_get_all_programs() - Get Request unsuccessful
+[INFO ] 2023-01-12 21:05:38,757 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program() - Get Request unsuccessful
+[INFO ] 2023-01-12 21:05:39,067 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_with_invalid_input() - Get Request unsuccessful
