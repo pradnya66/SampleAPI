@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import com.google.gson.JsonObject;
-
 import base.BaseClass;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,10 +20,8 @@ public class ProgramGETStepdefinition extends BaseClass{
 
 	String uri;
 	public RequestSpecification request;
-	int status;
-	JsonObject jsonObject;
 	Response response;
-	String jsonAsString;
+	
 	
 	@Given("User sets request for Program module with valid base URL")
 	public void user_sets_request_for_program_module_with_valid_base_url() {
@@ -104,17 +100,17 @@ public class ProgramGETStepdefinition extends BaseClass{
 
 	@Then("Request should be successfull with status code {string} for GET single program")
 	public void request_should_be_successfull_with_status_code_for_get_single_program(String statuscode) {
-		//int GetAllstatuscode = response.getStatusCode();
-		//if (GetAllstatuscode == 200) {
+		int GetAllstatuscode = response.getStatusCode();
+		if (GetAllstatuscode == 200) {
 		response.then().statusCode(Integer.parseInt(statuscode));
-		//response.then().assertThat().header("Connection", "keep-alive");
+		response.then().assertThat().header("Connection", "keep-alive");
 		logger.info("Get Request to fetch single program data is successful");
 	}
 	
-	//else if (GetAllstatuscode == 400) {
-		//logger.info("Get Request unsuccessful");
-	//}
-	//}
+	else if (GetAllstatuscode == 400) {
+		logger.info("Get Request unsuccessful");
+	}
+	}
 
 	@Given("User sets request for Program module with valid base URL and invalid path")
 	public void user_sets_request_for_program_module_with_valid_base_url_and_invalid_path() {

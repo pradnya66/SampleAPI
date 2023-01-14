@@ -1,5 +1,48 @@
-[INFO ] 2023-01-12 22:10:21,595 BaseClass.request_should_be_successfull_with_status_code_for_get_all_programs() - Get Request to fetch all program data is successfull
-[INFO ] 2023-01-12 22:10:22,291 BaseClass.not_found_error_message_should_be_displayed_with_status_code_for_get_all_programs() - Status code 404 received for GET all program with invalid URL
-[INFO ] 2023-01-12 22:10:23,589 BaseClass.request_should_be_successfull_with_status_code_for_get_single_program() - Get Request to fetch single program data is successful
-[INFO ] 2023-01-12 22:10:23,992 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program() - Status code 400 received for GET single program with invalid program ID
-[INFO ] 2023-01-12 22:10:24,232 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_with_invalid_input() - Status code 400 received for GET single program with invalid input *
+[INFO ] 2023-01-14 00:39:36,525 BaseClass.request_should_be_successfull_with_status_code_for_get_all_programs() - Get Request to fetch all program data is successfull
+[INFO ] 2023-01-14 00:39:37,069 BaseClass.not_found_error_message_should_be_displayed_with_status_code_for_get_all_programs() - Status code 404 received for GET all program with invalid URL
+[INFO ] 2023-01-14 00:39:38,481 BaseClass.request_should_be_successfull_with_status_code_for_get_single_program() - Get Request to fetch single program data is successful
+[INFO ] 2023-01-14 00:39:38,807 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program() - Status code 400 received for GET single program with invalid program ID
+[INFO ] 2023-01-14 00:39:39,053 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_with_invalid_input() - Status code 400 received for GET single program with invalid input *
+[INFO ] 2023-01-14 00:39:39,117 BaseClass.user_sets_request_for_Program_module_with_valid_base_URL_and_valid_request_body() - Request set for Program module with valid base URL and valid data
+[INFO ] 2023-01-14 00:39:39,595 BaseClass.user_sends_POST_request_with_data_from_and() - Post Request sent with valid request body
+[INFO ] 2023-01-14 00:39:39,597 BaseClass.request_should_be_successfull_with_status_code_for_POST_request() - Post Request unsuccessful with status code 201
+[INFO ] 2023-01-14 00:39:39,642 BaseClass.user_sets_request_for_program_module_with_invalid_base_url_and_valid_request_body() - Request set for Program module with invalid base URL and valid data
+[INFO ] 2023-01-14 00:39:40,075 BaseClass.user_sends_post_request_with_invalid_url_and_data_from_and() - Valid request body sent
+[INFO ] 2023-01-14 00:39:40,079 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_post_request_with_invalid_url() - Bad request error message received with 404
+[INFO ] 2023-01-14 00:39:40,130 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_empty_request_body() - Request set for Program module with valid base URL and empty request body
+[INFO ] 2023-01-14 00:39:40,346 BaseClass.user_sends_post_request_with_empty_request_body() - No data sent in request body
+[INFO ] 2023-01-14 00:39:40,348 BaseClass.bad_request_error_message_should_be_displayed_with_status_code_for_post_request_with_empty_request_body() - Bad request error message received with 400
+[INFO ] 2023-01-14 00:39:40,380 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:40,778 BaseClass.user_sends_post_request_without_program_name_parameter_in_request_body_from_and() - Post request sent without programName parameter
+[INFO ] 2023-01-14 00:39:40,781 BaseClass.bad_request_error_message_should_be_displayed_with_status_code() - Bad request error message displayed with statuscode 400
+[INFO ] 2023-01-14 00:39:40,843 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:40,882 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:41,320 BaseClass.user_sends_post_request_with_null_value_for_program_name_parameter_from_and() - Post request sent with null value in the programName parameter
+[INFO ] 2023-01-14 00:39:41,325 BaseClass.bad_request_error_message_should_be_displayed_with_status_code() - Bad request error message displayed with statuscode 400
+[INFO ] 2023-01-14 00:39:41,359 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:41,756 BaseClass.user_sends_post_request_without_program_description_parameter_from_and() - Post request sent without programDescription parameter
+[INFO ] 2023-01-14 00:39:41,757 BaseClass.request_should_be_successfull_with_status_code() - Post Request unsuccessful with 201
+[INFO ] 2023-01-14 00:39:41,774 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:42,269 BaseClass.user_sends_post_request_with_null_value_for_program_description_parameter_from_and() - Post request sent with null value in the programDescription parameter
+[INFO ] 2023-01-14 00:39:42,271 BaseClass.request_should_be_successfull_with_status_code() - Post Request unsuccessful with 201
+[INFO ] 2023-01-14 00:39:42,297 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:42,318 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:42,691 BaseClass.user_sends_post_request_without_program_status_parameter_from_and() - Post request sent without programStatus parameter
+[INFO ] 2023-01-14 00:39:42,693 BaseClass.bad_request_error_message_should_be_displayed_with_status_code() - Bad request error message displayed with statuscode 400
+[INFO ] 2023-01-14 00:39:42,711 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,107 BaseClass.user_sends_post_request_with_null_value_for_program_status_parameter_from_and() - Post request sent with null value in the programStatus parameter
+[INFO ] 2023-01-14 00:39:43,108 BaseClass.bad_request_error_message_should_be_displayed_with_status_code() - Bad request error message displayed with statuscode 400
+[INFO ] 2023-01-14 00:39:43,124 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,140 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,864 BaseClass.user_sends_post_request_without_creation_time_parameter_in_the_request_body() - Post request sent without creationTime parameter
+[INFO ] 2023-01-14 00:39:43,866 BaseClass.bad_request_error_message_should_be_displayed_with_status_code() - Bad request error message displayed with statuscode 400
+[INFO ] 2023-01-14 00:39:43,877 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,894 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,908 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,918 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,935 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,958 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,975 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:43,997 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:44,020 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
+[INFO ] 2023-01-14 00:39:44,042 BaseClass.user_sets_request_for_program_module_with_valid_base_url_and_invalid_data() - Request set with invalid data in the request body
