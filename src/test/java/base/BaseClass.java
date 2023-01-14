@@ -1,6 +1,8 @@
 package base;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -17,17 +19,22 @@ public class BaseClass {
 
 	public String randomestring()
 	{
-		String generateinvalidID=RandomStringUtils.random(4);
+		String generateinvalidID=RandomStringUtils.randomNumeric(4);
 		return(generateinvalidID);
 	}
 	
-	public Map<String,String> getDataFromExcel(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
-		ExcelReader excelReader = new ExcelReader();
-		Map<String,String> getData = 
-				excelReader.getData(Config.EXCEL, SheetName).get(Rownumber);
-		return getData;
+	public static String Timestamp() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		String timestamp = df.format(new Date());
+		return (timestamp);
 	}
 	
-	
+	public static Map<String,String> getDataFromExcel(String SheetName, int Rownumber) throws InvalidFormatException, IOException  {
+		ExcelReader excelReader = new ExcelReader();
+		Map<String,String> Data = 
+				excelReader.getData(Config.EXCEL, SheetName).get(Rownumber);
+		return Data;
+	}
+
 
 }

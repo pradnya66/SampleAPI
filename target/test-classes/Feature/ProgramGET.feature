@@ -7,7 +7,7 @@ Feature: Program-Get Requests
     
   Scenario: Verifying GET request to retrieve all program data with invalid URL
     Given User sets request for Program module with invalid base URL
-    When User sends GET request 
+    When User sends GET request with invalid URL
     Then Not found error message should be displayed with status code "404" for GET All programs
     
   Scenario Outline: Verifying GET request to retrieve single program data with valid program ID
