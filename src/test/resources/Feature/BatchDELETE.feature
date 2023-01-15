@@ -6,13 +6,15 @@ Feature: Batch Delete
 		Given User sets delete request for Batch module 
 		When User sends DELETE request with valid batchId from "<SheetName>" and <Rownumber>
 		Then Batch delete should be successfull with status code "200" and get message "Message: Batch with Id-{batchId} deleted Successfully!"
+		When User sends GET request for batchId from "<SheetName>" and <Rownumber>
+		Then Batch Bad request error message should be displayed with status code "400" for GET single program for Delete
 	
 		Examples:
 			| SheetName    | Rownumber |
 	    | deleteBatch  |         0 |
 
 	@Batch_Delete_002
-	Scenario Outline: Verifying DELETE request by batchId with invalid batchId
+	Scenario Outline: Verifying DELETE request by batchId with nonexisting valid batchId
 		Given User sets delete request for Batch module
 		When User sends DELETE request with nonexisting valid batchId from "<SheetName>" and <Rownumber>	
 		Then Batch errorCode "ENTITY_DOES_NOT_EXIST" and errorMessage "Batch not found with Id : {batchId} " should be displayed with "400" bad request status code

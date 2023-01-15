@@ -29,6 +29,7 @@ public class BatchDeleteStepDefinition extends BaseClass {
 	Response response;
 	String jsonAsString;
 	String batchId;
+	String programId;
 	
 	@Given("User sets delete request for Batch module")
 	public void user_sets_delete_request_for_batch_module() throws InvalidFormatException, IOException {
@@ -41,7 +42,7 @@ public class BatchDeleteStepDefinition extends BaseClass {
 	public void createBatchPostRequest(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 		ProgramDELETEStepdefinition prgDelStepDef = new ProgramDELETEStepdefinition();
 		prgDelStepDef.createPostRequest("postvaliddataprogram", 2);
-		String programId = prgDelStepDef.response.getBody().jsonPath().get("programId").toString();
+		programId = prgDelStepDef.response.getBody().jsonPath().get("programId").toString();
 		
 		this.uri = Config.PostBatch_URL;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
@@ -75,8 +76,6 @@ public class BatchDeleteStepDefinition extends BaseClass {
 			logger.info("Delete Request unsuccessful");
 		}
 		
-		
-		
 		batchId = response.getBody().jsonPath().get("batchId").toString(); 
 		if (batchId != null){ 
 			logger.info("batchId to test delete batch is created successfully");
@@ -100,8 +99,39 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		message = message.replace("{batchId}", batchId);
 		Assert.assertEquals(true, jsonAsString.contains(message));
 		logger.info("Batch delete is successfull with status code 200 and get message");
+
+		// deleting program created 
+		this.uri = Config.BASE_URL + "/deletebyprogid"; 
+		this.request = RestAssured.given().header("Content-Type", "application/json");
+		
+		response = this.request
+				.when()
+				.delete(this.uri + "/" + programId)
+				.then()
+				.log().all().extract().response();
+		
 	}
 		
+	@When("User sends GET request for batchId from {string} and {int}")
+	public void user_sends_get_request_for_batch_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
+		this.uri = Config.BASE_URL + "/batches/batchId"; 
+		this.request = RestAssured.given().header("Content-Type", "application/json");
+		
+		response = this.request
+				.when()
+				.get(this.uri + "/" + batchId)
+				.then()
+				.log().all().extract().response();
+	}
+	@Then("Batch Bad request error message should be displayed with status code {string} for GET single program for Delete")
+	public void batch_bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_for_delete(String statusCd) {
+		int GetBatchstatuscode = response.getStatusCode();
+		if (GetBatchstatuscode == 400) {
+			response.then().statusCode(Integer.parseInt(statusCd));
+			logger.info("Status code "+GetBatchstatuscode+ "received for GET single program with invalid program ID");
+		}
+	}
+	
 	@When("User sends DELETE request with nonexisting valid batchId from {string} and {int}")
 	public void user_sends_delete_request_with_nonexisting_valid_batch_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 	    batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");

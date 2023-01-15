@@ -102,13 +102,24 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 				.log().all().extract().response();
 	}
 	
+	@Then("Program Bad request error message should be displayed with status code {string} for GET single program for delete")
+	public void program_bad_request_error_message_should_be_displayed_with_status_code_for_get_single_program_for_delete(String statuscode) {
+		int GetPrgstatuscode = response.getStatusCode();
+		if (GetPrgstatuscode == 400) {
+		response.then().statusCode(Integer.parseInt(statuscode));
+		logger.info("Status code 400 received for GET single program with invalid program ID");
+	}
+	else 
+		logger.info("Get Request unsuccessful");
+	}
+	
 	@Given("User sets request for Program module with nonexisting valid <programId>")
 	public void user_sets_request_for_program_module_with_nonexisting_valid_program_id() {
 	    setDeleteProgramId();
 	}
 	
-	@Then("{string} error message should be displayed with {string} bad request status code")
-	public void error_message_should_be_displayed_with_bad_request_status_code(String message, String statusCode) {
+	@Then("Program {string} error message should be displayed with {string} bad request status code")
+	public void program_error_message_should_be_displayed_with_bad_request_status_code(String message, String statusCode) {
 		int statusCodeActual = response.getStatusCode();
 		if (statusCodeActual == 400) {
 			response.then().statusCode(Integer.parseInt(statusCode));
@@ -133,8 +144,8 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 				.log().all().extract().response();
 	}
 	
-	@Then("Not found error message should be displayed with status code {string}")
-	public void not_found_error_message_should_be_displayed_with_status_code(String statusCode) {
+	@Then("Program Not found error message should be displayed with status code {string}")
+	public void program_not_found_error_message_should_be_displayed_with_status_code(String statusCode) {
 		int statusCd = response.getStatusCode();
 		if (statusCd == 404) {
 			response.then().statusCode(Integer.parseInt(statusCode));
