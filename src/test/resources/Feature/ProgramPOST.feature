@@ -7,7 +7,7 @@ Feature: Program-POST Requests
     
     Examples: 
       | SheetName            | Rownumber |
-      | postvaliddataprogram |     2     |
+      | postvaliddataprogram |     0     |
      
   Scenario Outline: Verify POST request to post data into program with invalid base URL and valid data
 		Given User sets request for Program module with invalid base URL and valid request body
@@ -16,7 +16,7 @@ Feature: Program-POST Requests
 	
 		Examples: 
       | SheetName            | Rownumber |
-      | postvaliddataprogram |     2     |
+      | postvaliddataprogram |     1     |
       
    Scenario: Verify POST request to post data into program with valid URL and no data     
  			Given User sets request for Program module with valid base URL and empty request body
@@ -31,12 +31,7 @@ Feature: Program-POST Requests
  	 		Examples: 
       | SheetName           | Rownumber |
       | NoProgramName       |     0     |
- 	 		
- 	 Scenario: Verify POST request to post data into program with valid base URL and invalid data 	
- 	 		Given User sets request for Program module with valid base URL and invalid data
- 	 		When User sends POST request with empty String value for programName parameter
- 	 		Then Bad request error message should be displayed with status code "400"
- 	 		
+ 		
  	 Scenario Outline: Verify POST request to post data into program with valid base URL and invalid data
  	 		Given User sets request for Program module with valid base URL and invalid data
  	 		When User sends POST request with null value for programName parameter from "<SheetName>" and <Rownumber>	
@@ -46,14 +41,10 @@ Feature: Program-POST Requests
       | SheetName               | Rownumber |
       |  RequestBodyInvalidData |     0     |
  	 		
- 	 Scenario Outline: Verify POST request to post data into program with valid base URL and invalid data
+ 	 Scenario: Verify POST request to post data into program with valid base URL and invalid data
  	 		Given User sets request for Program module with valid base URL and invalid data 
- 	 		When User sends POST request without programDescription parameter from "<SheetName>" and <Rownumber>
- 	 		Then Request should be successfull with status code "201"
- 	 		
- 	 		Examples: 
-      | SheetName            | Rownumber |
-      | NoProgDescription    |     0     |
+ 	 		When User sends POST request without programDescription parameter in the request body
+ 	 		Then Request should be successfull with status code "201" for no programDescription parameter
  	 	
  	 Scenario Outline: Verify POST request to post data into program with valid base URL and invalid data
  	 		Given User sets request for Program module with valid base URL and invalid data
@@ -63,13 +54,7 @@ Feature: Program-POST Requests
  	 		Examples: 
       | SheetName               | Rownumber |
       | RequestBodyInvalidData  |     1     |
- 	 		
- 	 Scenario: Verify POST request to post data into program with valid base URL and invalid data 	
- 	 		Given User sets request for Program module with valid base URL and invalid data
- 	 		When User sends POST request empty String value for programDescription parameter in the request body
- 	 		Then Request should be successfull with status code "201"	
- 	 		
-      
+ 	 		      
     Scenario Outline: Verify POST request to post data into program with valid base URL and invalid data  
     	 Given User sets request for Program module with valid base URL and invalid data
     	 When User sends POST request without programStatus parameter from "<SheetName>" and <Rownumber>
@@ -88,11 +73,6 @@ Feature: Program-POST Requests
       | SheetName                | Rownumber |
       | RequestBodyInvalidData   |     2     |
       
-   Scenario: Verify POST request to post data into program with valid base URL and invalid data  
-    	 Given User sets request for Program module with valid base URL and invalid data   
-    	 When User sends POST request with empty string value for programStatus parameter in the request body
-    	 Then Bad request error message should be displayed with status code "400"
-    	 
     Scenario: Verify POST request to post data into program with valid base URL and invalid data  
     	 Given User sets request for Program module with valid base URL and invalid data 
     	 When User sends POST request without creationTime parameter in the request body
@@ -143,11 +123,14 @@ Feature: Program-POST Requests
        When User sends POST requestwith lastModTime parameter value as special characters in the request body
        Then Bad request error message should be displayed with status code "400"
       
-     Scenario: Verify POST request to post data into program with valid base URL and invalid data 
+     Scenario Outline: Verify POST request to post data into program with valid base URL and invalid data 
        Given User sets request for Program module with valid base URL and invalid data
-       When User sends POST requestwith lastModTime parameter value as Date(yyyy-mm-dd) format in the request body
-       Then Request should be successfull with status code "201"
-           
+       When User sends POST request with lastModTime parameter value as Date format from "<SheetName>" and <Rownumber>
+       Then Request should be successfull with status code "201" for lastModTime parameter in date format
+        
+        Examples: 
+      | SheetName                | Rownumber |
+      | LastModDateFormat        |     0     |   
  	 
  	     
  	 

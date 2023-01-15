@@ -14,7 +14,7 @@ import utilities.Config;
 import utilities.ExcelReader;
 
 public class BaseClass {
-	
+
 	public static final Logger logger = LogManager.getLogger(BaseClass.class.getName());
 
 
