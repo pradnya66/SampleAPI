@@ -33,7 +33,7 @@ Feature: Program Delete
 	Scenario Outline: Verifying DELETE request by programId with invalid programId
 		Given User sets request for Program module with invalid <programId> 
 		When User sends DELETE request with invalid programId from "<SheetName>" and <Rownumber>
-		Then Bad request error message should be displayed with status code "400"
+		Then Program Bad request error message should be displayed with status code "400"
 		
 		Examples: 
 			| SheetName        | Rownumber |

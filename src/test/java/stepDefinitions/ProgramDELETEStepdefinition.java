@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 
 import com.google.gson.JsonObject;
@@ -31,13 +32,48 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 	String programId;
 	
 	@Given("User sets request for Program module with valid base URL and path")
-	public void user_sets_request_for_program_module_with_valid_base_url_and_path() {
+	public void user_sets_request_for_program_module_with_valid_base_url_and_path() throws InvalidFormatException, IOException {
+		createPostRequest("postvaliddataprogram", 2);
 		setDeleteProgramId();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void createPostRequest(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
+		this.uri = Config.PostProgram_URL;
+		this.request = RestAssured.given().header("Content-Type", "application/json");
+		
+		String programName = getDataFromExcel(SheetName,Rownumber).get("programName")+randomestring();
+		String programDescription = getDataFromExcel(SheetName,Rownumber).get("programDescription");
+		String programStatus = getDataFromExcel(SheetName,Rownumber).get("programStatus");
+		String creationTime = Timestamp();
+		String lastModTime = Timestamp();
+	
+		JSONObject body = new JSONObject();
+		body.put("programName", programName);
+		body.put("programDescription", programDescription);
+		body.put("programStatus", programStatus);
+		body.put("creationTime", creationTime);
+		body.put("lastModTime", lastModTime);
+		
+		response = this.request
+				.body(body.toJSONString())
+				.when()
+				.post(this.uri)
+				.then()
+				.log().all().extract().response();	
+		
 	}
 
 	@When("User sends DELETE request with valid programId from {string} and {int}")
-	public void user_sends_delete_request_with_valid_program_id_from_and(String SheetName, Integer Rownumber) throws InvalidFormatException, IOException {
+	public void user_sends_delete_request_with_valid_program_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 		String programId = getDataFromExcel(SheetName, Rownumber).get("programId");
+		
+		if (response != null) {
+			if (response.getStatusCode() == 201) {
+				programId = response.getBody().jsonPath().get("programId").toString();
+			}
+		}
+		System.out.println(" programId created for delete is: "+programId);
 		sendDeleteProgramId(programId);
 		this.programId = programId;
 	}
@@ -50,6 +86,7 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 		jsonAsString = response.asString();
 		message = message.replace("{programId}", programId);
 		Assert.assertEquals(true, jsonAsString.contains(message));
+		logger.info("Delete Request to delete program by id is successful");
 	}
 	
 	@When("User sends GET request with programId from {string} and {int}")
@@ -118,17 +155,17 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 		String programId = getDataFromExcel(SheetName, Rownumber).get("programId");
 	    sendDeleteProgramId(programId+randomestring()+"@");
 	}
-	@Then("Bad request error message should be displayed with status code {string}")
-	public void bad_request_error_message_should_be_displayed_with_status_code(String statusCode) {
+	@Then("Program Bad request error message should be displayed with status code {string}")
+	public void program_bad_request_error_message_should_be_displayed_with_status_code(String statusCode) {
 		int statusCd = response.getStatusCode();
 		if (statusCd == 400) {
 			response.then().statusCode(Integer.parseInt(statusCode));
-			logger.info("Status code 400 received for DELETE single program with invalid program ID");
-
+			
 			// 404 schema same for 400 schema
 			response.then().assertThat()
 			.body(JsonSchemaValidator.matchesJsonSchema
 					(new File("src/test/resources/JsonSchemaProgramDelete/deleteprogram404schema.json")));
+			logger.info("Status code 400 received for DELETE single program with invalid program ID");
 		}
 		else { 
 			logger.info("Delete Request unsuccessful");
@@ -136,13 +173,20 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 	}
 	
 	@Given("User sets request for Program module with valid <programName>")
-	public void user_sets_request_for_program_module_with_valid_program_name() {
-	    setDeleteProgramName();
+	public void user_sets_request_for_program_module_with_valid_program_name() throws InvalidFormatException, IOException {
+		createPostRequest("postvaliddataprogram", 2);
+		setDeleteProgramName();
 	}
 	
 	@When("User sends DELETE request with programName from {string} and {int}")
 	public void user_sends_delete_request_with_program_name_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 		String programName = getDataFromExcel(SheetName, Rownumber).get("programName");
+		
+		if (response != null) {
+			if (response.getStatusCode() == 201) {
+				programName = response.getBody().jsonPath().get("programName");
+			}
+		}
 	    sendDeleteProgramName(programName);
 	}
 	
@@ -153,6 +197,7 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 				"Delete program by Name request unsuccessful");	
 		jsonAsString = response.asString();
 		Assert.assertEquals(true, jsonAsString.contains(message));
+		logger.info("Delete Request to delete single program by Name is successful with message");
 	}
 	
 	@Given("User sets request for Program module with nonexisting valid <programName>")
@@ -179,6 +224,7 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 			
 			Assert.assertEquals(true,response.getBody().asString().contains(errorCode));
 			Assert.assertEquals(true,response.getBody().asString().contains(errorMessage));
+			logger.info("Status code 400 received for DELETE by programName with invalid program ID Asserted for Schema and its values");
 		}
 		else { 
 			logger.info("Delete Request unsuccessful");

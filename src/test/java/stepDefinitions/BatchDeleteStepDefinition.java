@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.simple.JSONObject;
 import org.junit.Assert;
 
 import com.google.gson.JsonObject;
@@ -30,14 +31,63 @@ public class BatchDeleteStepDefinition extends BaseClass {
 	String batchId;
 	
 	@Given("User sets delete request for Batch module")
-	public void user_sets_delete_request_for_batch_module() {
+	public void user_sets_delete_request_for_batch_module() throws InvalidFormatException, IOException {
+		createBatchPostRequest("postBatchValid", 0);
 		this.uri = Config.BASE_URL + this.basePathDelByBatchId;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void createBatchPostRequest(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
+		ProgramDELETEStepdefinition prgDelStepDef = new ProgramDELETEStepdefinition();
+		prgDelStepDef.createPostRequest("postvaliddataprogram", 2);
+		String programId = prgDelStepDef.response.getBody().jsonPath().get("programId").toString();
+		
+		this.uri = Config.PostBatch_URL;
+		this.request = RestAssured.given().header("Content-Type", "application/json");
+		
+		String batchName = getDataFromExcel(SheetName,Rownumber).get("batchName")+randomestring();
+		String batchDescription = getDataFromExcel(SheetName,Rownumber).get("batchDescription");
+		String batchStatus = getDataFromExcel(SheetName,Rownumber).get("batchStatus");
+		String batchNoOfClasses = "12";
+	
+		JSONObject body = new JSONObject();
+		body.put("batchName", batchName);
+		body.put("batchDescription", batchDescription);
+		body.put("batchStatus", batchStatus);
+		body.put("batchNoOfClasses", batchNoOfClasses);
+		body.put("programId", programId);
+		
+		response = this.request
+				.body(body.toJSONString())
+				.when()
+				.post(this.uri)
+				.then()
+				.log().all().extract().response();	
+		
+		
+		int statusCd = response.getStatusCode();
+		if (statusCd == 201) {
+			response.then().statusCode(Integer.parseInt("201"));
+			logger.info("Post batch request status "+ 201);
+		}
+		else { 
+			logger.info("Delete Request unsuccessful");
+		}
+		
+		
+		
+		batchId = response.getBody().jsonPath().get("batchId").toString(); 
+		if (batchId != null){ 
+			logger.info("batchId to test delete batch is created successfully");
+		}else {
+			logger.info("batchId to test delete batch failed");
+		}
+	}
+	
 	@When("User sends DELETE request with valid batchId from {string} and {int}")
 	public void user_sends_delete_request_with_valid_batch_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
-	    batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");
+//	    batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");
 		sendDeleteBatchId(batchId);
 	}
 	
@@ -49,6 +99,7 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		jsonAsString = response.asString();
 		message = message.replace("{batchId}", batchId);
 		Assert.assertEquals(true, jsonAsString.contains(message));
+		logger.info("Batch delete is successfull with status code 200 and get message");
 	}
 		
 	@When("User sends DELETE request with nonexisting valid batchId from {string} and {int}")
@@ -72,8 +123,10 @@ public class BatchDeleteStepDefinition extends BaseClass {
 			if(batchId != null) {
 				errorMessage = errorMessage.replace("{batchId}", batchId);
 			}
+			System.out.println("errorMessage here is : " + errorMessage);
 			Assert.assertEquals(true,response.getBody().asString().contains(errorCode));
 			Assert.assertEquals(true,response.getBody().asString().contains(errorMessage));
+			logger.info("Delete batch request status 400 with message batch not found with id "+ batchId);
 		}
 		else { 
 			logger.info("Delete Request unsuccessful");
@@ -91,12 +144,13 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		int statusCd = response.getStatusCode();
 		if (statusCd == 400) {
 			response.then().statusCode(Integer.parseInt(statusCode));
-			logger.info("Status code 400 received for DELETE single program with invalid program ID");
+			
 
 			// 404 schema same for 400 schema
 			response.then().assertThat()
 			.body(JsonSchemaValidator.matchesJsonSchema
 					(new File("src/test/resources/JsonSchemaProgramDelete/deleteprogram404schema.json")));
+			logger.info("Status code 400 received for DELETE single program with invalid program ID");
 		}
 		else { 
 			logger.info("Delete Request unsuccessful");
@@ -129,6 +183,7 @@ public class BatchDeleteStepDefinition extends BaseClass {
 
 	@When("User sends DELETE request with {string}")
 	public void user_sends_delete_request_with(String batchId) {
+		this.batchId = batchId;
 	    sendDeleteBatchId(batchId);
 	}
 	
