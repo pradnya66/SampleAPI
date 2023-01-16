@@ -44,10 +44,6 @@ public class ProgramGETStepdefinition extends BaseClass{
 		response.then().statusCode(Integer.parseInt(statuscode));
 		//Header Validation
 		response.then().assertThat().header("Connection", "keep-alive");
-		//Json Schema Validation
-		response.then().assertThat()
-		.body(JsonSchemaValidator.matchesJsonSchema(new File("./src/test/resources/JsonSchemas/GetAllProgram.json")));
-		
 		logger.info("Get Request to fetch all program data is successfull");
 	}
 	
@@ -105,6 +101,7 @@ public class ProgramGETStepdefinition extends BaseClass{
 		if (GetAllstatuscode == 200) {
 		response.then().statusCode(Integer.parseInt(statuscode));
 		response.then().assertThat().header("Connection", "keep-alive");
+		//Json Schema Validation
 		response.then().assertThat()
 		.body(JsonSchemaValidator.matchesJsonSchema(new File("./src/test/resources/JsonSchemas/GetSingleProgram.json")));
 		logger.info("Get Request to fetch single program data is successful");

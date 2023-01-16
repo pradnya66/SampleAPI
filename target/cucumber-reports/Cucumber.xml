@@ -1,255 +1,159 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="5" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="20" time="16.474">
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and valid data" time="7.228">
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="25" time="18.672">
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data in valid URL" time="5.356">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL..............passed
+When User sends GET request.................................................passed
+Then Request should be successfull with status code "200" for GET All programs.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve all program data with invalid URL" time="0.412">
+<system-out><![CDATA[Given User sets request for Program module with invalid base URL............passed
+When User sends GET request with invalid URL................................passed
+Then Not found error message should be displayed with status code "404" for GET All programs.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with valid program ID" time="2.185">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and valid path.passed
+When User sends GET request with valid program ID from "getsingleprogram" and 0.passed
+Then Request should be successfull with status code "200" for GET single program.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid program ID" time="0.243">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid path.passed
+When User sends GET request with invalid program ID.........................passed
+Then Bad request error message should be displayed with status code "400" for GET single program.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-Get Requests" name="Verifying GET request to retrieve single program data with invalid input" time="0.249">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid path.passed
+When User sends GET request with invalid input..............................passed
+Then Bad request error message should be displayed with status code "400" for GET single program with invalid input.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and valid data" time="1.853">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and valid request body.passed
 When User sends POST request with data from "postvaliddataprogram" and 0....passed
 Then Request should be successfull with status code "201" for POST request..passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with invalid base URL and valid data" time="0.773">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with invalid base URL and valid data" time="0.474">
 <system-out><![CDATA[Given User sets request for Program module with invalid base URL and valid request body.passed
 When User sends POST request with invalid URL and data from "postvaliddataprogram" and 1.passed
 Then Bad request error message should be displayed with status code "404" for POST request with invalid URL.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid URL and no data" time="0.284">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid URL and no data" time="0.249">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and empty request body.passed
 When User sends POST request with empty request body........................passed
 Then Bad request error message should be displayed with status code "400" for POST request with empty request body.passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data" time="0.496">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data" time="0.472">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
-When User sends POST request without programName parameter in request body from "NoProgramName" and 0.passed
+When User sends POST request without programName parameter in request body..passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 2" time="0.45">
-<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
-When User sends POST request with null value for programName parameter from "RequestBodyInvalidData" and 0.passed
-Then Bad request error message should be displayed with status code "400"...passed
-]]></system-out>
-</testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 3" time="0.51">
-<failure message="1 expectation failed.&#10;Expected status code &lt;201&gt; but was &lt;400&gt;.&#10;" type="java.lang.AssertionError"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
-When User sends POST request without programDescription parameter from "NoProgDescription" and 0.passed
-Then Request should be successfull with status code "201"...................failed
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 2" time="0.269">
+<failure message="" type="java.lang.NullPointerException"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+When User sends POST request with null value for programName parameter in the request body.passed
+Then Bad request error message should be displayed with status code "400" for null value in programName parameter.failed
 
 StackTrace:
-java.lang.AssertionError: 1 expectation failed.
-Expected status code <201> but was <400>.
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
-	at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)
-	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
-	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
-	at stepDefinitions.ProgramPostStepdefinition.request_should_be_successfull_with_status_code(ProgramPostStepdefinition.java:200)
-	at ✽.Request should be successfull with status code "201"(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:47)
+java.lang.NullPointerException
+	at io.restassured.path.json.JsonPath.getInt(JsonPath.java:245)
+	at stepDefinitions.ProgramPostStepdefinition.bad_request_error_message_should_be_displayed_with_status_code_for_null_value_in_program_name_parameter(ProgramPostStepdefinition.java:220)
+	at ✽.Bad request error message should be displayed with status code "400" for null value in programName parameter(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:34)
 ]]></failure>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 4" time="0.446">
-<failure message="1 expectation failed.&#10;Expected status code &lt;201&gt; but was &lt;400&gt;.&#10;" type="java.lang.AssertionError"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 3" time="0.469">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+When User sends POST request without programDescription parameter in the request body.passed
+Then Request should be successfull with status code "201" for no programDescription parameter.passed
+]]></system-out>
+</testcase>
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 4" time="0.605">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with null value for programDescription parameter from "RequestBodyInvalidData" and 1.passed
-Then Request should be successfull with status code "201"...................failed
-
-StackTrace:
-java.lang.AssertionError: 1 expectation failed.
-Expected status code <201> but was <400>.
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
-	at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)
-	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
-	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
-	at stepDefinitions.ProgramPostStepdefinition.request_should_be_successfull_with_status_code(ProgramPostStepdefinition.java:200)
-	at ✽.Request should be successfull with status code "201"(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:56)
-]]></failure>
+Then Request should be successfull with status code "201"...................passed
+]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 5" time="0.509">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 5" time="0.364">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request without programStatus parameter from "NoProgStaus" and 0.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 6" time="0.435">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 6" time="0.394">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with null value for programStatus parameter from "RequestBodyInvalidData" and 2.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 7" time="0.944">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 7" time="0.645">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request without creationTime parameter in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 8" time="0.69">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 8" time="0.21">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request without value for creationTime parameter in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 9" time="0.257">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 9" time="0.229">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with creationTime parameter value as alphabets in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 10" time="0.241">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 10" time="0.227">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with creationTime parameter value as special characters in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 11" time="0.231">
-<failure message="1 expectation failed.&#10;Expected status code &lt;201&gt; but was &lt;400&gt;.&#10;" type="java.lang.AssertionError"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 11" time="0.501">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with creationTime parameter value as Date(yyyy-mm-dd) format in the request body.passed
-Then Request should be successfull with status code "201"...................failed
-
-StackTrace:
-java.lang.AssertionError: 1 expectation failed.
-Expected status code <201> but was <400>.
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
-	at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)
-	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
-	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
-	at stepDefinitions.ProgramPostStepdefinition.request_should_be_successfull_with_status_code(ProgramPostStepdefinition.java:200)
-	at ✽.Request should be successfull with status code "201"(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:103)
-]]></failure>
+Then Request should be successfull with status code "201" for timestamp parameter in date format.passed
+]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 12" time="0.26">
-<failure message="1 expectation failed.&#10;Expected status code &lt;201&gt; but was &lt;400&gt;.&#10;" type="java.lang.AssertionError"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 12" time="0.23">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with lastMOdTime parameter value as numbers in the request body.passed
-Then Request should be successfull with status code "201"...................failed
-
-StackTrace:
-java.lang.AssertionError: 1 expectation failed.
-Expected status code <201> but was <400>.
-
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
-	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:60)
-	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:86)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
-	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
-	at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)
-	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
-	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
-	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
-	at stepDefinitions.ProgramPostStepdefinition.request_should_be_successfull_with_status_code(ProgramPostStepdefinition.java:200)
-	at ✽.Request should be successfull with status code "201"(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:108)
-]]></failure>
+Then Request should be successfull with status code "201"...................passed
+]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 13" time="0.274">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 13" time="0.225">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request without lastModTime parameter in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 14" time="0.234">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 14" time="0.211">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST request with lastModTime parameter value as empty string in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 15" time="0.252">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 15" time="0.208">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST requestwith lastModTime parameter value as alphabets in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 16" time="0.238">
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 16" time="0.213">
 <system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
 When User sends POST requestwith lastModTime parameter value as special characters in the request body.passed
 Then Bad request error message should be displayed with status code "400"...passed
 ]]></system-out>
 </testcase>
-<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 17" time="0.308">
-<failure message="" type="java.lang.NullPointerException"><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
-When User sends POST requestwith lastModTime parameter value as Date(yyyy-mm-dd) format in the request body.failed
-Then Request should be successfull with status code "201"...................skipped
-
-StackTrace:
-java.lang.NullPointerException
-	at io.restassured.path.json.JsonPath.getInt(JsonPath.java:245)
-	at stepDefinitions.ProgramPostStepdefinition.user_sends_post_requestwith_last_mod_time_parameter_value_as_date_yyyy_mm_dd_format_in_the_request_body(ProgramPostStepdefinition.java:343)
-	at ✽.User sends POST requestwith lastModTime parameter value as Date(yyyy-mm-dd) format in the request body(file:///C:/Users/admin/eclipse-workspace/LMSRestAssuredAutomation/./src/test/resources/Feature/ProgramPOST.feature:132)
-]]></failure>
+<testcase classname="Program-POST Requests" name="Verify POST request to post data into program with valid base URL and invalid data 17" time="0.909">
+<system-out><![CDATA[Given User sets request for Program module with valid base URL and invalid data.passed
+When User sends POST request with lastModTime parameter value as Date format from "LastModDateFormat" and 0.passed
+Then Request should be successfull with status code "201" for timestamp parameter in date format.passed
+]]></system-out>
 </testcase>
 </testsuite>
