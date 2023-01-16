@@ -14,7 +14,9 @@ import io.cucumber.junit.CucumberOptions;
 				"json:target/cucumber-reports/reports.json", 
 				"junit:target/cucumber-reports/Cucumber.xml",
 				"html:target/cucumber-reports/reports.html", 
-				"html:test-output/index.html" }, 
+				"html:test-output/index.html",
+				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, 
+//				tags = "@batchput or @programput",
 				
 				publish = true)
 public class TestRunner {
