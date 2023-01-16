@@ -17,7 +17,7 @@ public class Config {
 	public static final String DeleteBatch_URL = "https://lms-backend-service.herokuapp.com/lms/batches";
 	
 	
-	public static final String EXCEL = "./Data Files/LMSAPIHackathon.xlsx";
+	public static final String EXCEL = "./Data Files/LMSAPIHackathonData.xlsx";
 	
 	
 	public static final String BASE_Invalid_URL = "https://lms-backend.herokuapp.com/lms";
