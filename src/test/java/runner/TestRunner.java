@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
 				"html:target/cucumber-reports/reports.html", 
 				"html:test-output/index.html",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, 
-				tags = "@batchdel or @prgdel",
+//				tags = "@batchput or @programput",
 				
 				publish = true)
 public class TestRunner {
