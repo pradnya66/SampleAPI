@@ -42,7 +42,7 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 		this.uri = Config.PostProgram_URL;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
 		
-		String programName = getDataFromExcel(SheetName,Rownumber).get("programName")+randomestring();
+		String programName = getDataFromExcel(SheetName,Rownumber).get("programName")+BaseClass.randomestring();
 		String programDescription = getDataFromExcel(SheetName,Rownumber).get("programDescription");
 		String programStatus = getDataFromExcel(SheetName,Rownumber).get("programStatus");
 		String creationTime = Timestamp();
@@ -164,7 +164,7 @@ public class ProgramDELETEStepdefinition extends BaseClass{
 	@When("User sends DELETE request with invalid programId from {string} and {int}")
 	public void user_sends_delete_request_with_invalid_program_id_from_and(String SheetName, Integer Rownumber) throws InvalidFormatException, IOException {
 		String programId = getDataFromExcel(SheetName, Rownumber).get("programId");
-	    sendDeleteProgramId(programId+randomestring()+"@");
+	    sendDeleteProgramId(programId+BaseClass.randomestring()+"@");
 	}
 	@Then("Program Bad request error message should be displayed with status code {string}")
 	public void program_bad_request_error_message_should_be_displayed_with_status_code(String statusCode) {

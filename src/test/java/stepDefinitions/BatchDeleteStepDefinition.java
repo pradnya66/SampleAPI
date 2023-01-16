@@ -47,7 +47,7 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		this.uri = Config.PostBatch_URL;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
 		
-		String batchName = getDataFromExcel(SheetName,Rownumber).get("batchName")+randomestring();
+		String batchName = getDataFromExcel(SheetName,Rownumber).get("batchName")+BaseClass.randomestring();
 		String batchDescription = getDataFromExcel(SheetName,Rownumber).get("batchDescription");
 		String batchStatus = getDataFromExcel(SheetName,Rownumber).get("batchStatus");
 		String batchNoOfClasses = "12";
