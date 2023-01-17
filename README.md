@@ -53,7 +53,7 @@ LMSRestAssuredAutomation project is an automation testing project in which the b
 
 #### Running the project:    
     Through Eclipse:	
-      	Go to Runner.java in  src\test\java\runner\TestRunner.java
+      	Go to TestRunner.java in  src\test\java\runner\TestRunner.java
         Right Click – run as – JUnit Test
 
 ##### Features will run in order :     
