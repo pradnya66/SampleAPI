@@ -72,7 +72,6 @@ public class BatchDeleteStepDefinition extends BaseClass {
 				.then()
 				.log().all().extract().response();	
 		
-		
 		int statusCd = response.getStatusCode();
 		if (statusCd == 201) {
 			response.then().statusCode(Integer.parseInt("201"));
@@ -82,12 +81,11 @@ public class BatchDeleteStepDefinition extends BaseClass {
 			logger.info("Delete Request unsuccessful");
 		}
 		
-		batchId = response.getBody().jsonPath().get("batchId").toString(); 
-		if (batchId != null){ 
-			logger.info("batchId to test delete batch is created successfully");
-		}else {
-			logger.info("batchId to test delete batch failed");
-		}
+//		if (batchId != null){ 
+//			logger.info("batchId to test delete batch is created successfully");
+//		}else {
+//			logger.info("batchId to test delete batch failed");
+//		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -119,7 +117,11 @@ public class BatchDeleteStepDefinition extends BaseClass {
 	
 	@When("User sends DELETE request with valid batchId from {string} and {int}")
 	public void user_sends_delete_request_with_valid_batch_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
-//	    batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");
+		String batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");
+		if(response !=null) {
+			batchId = response.getBody().jsonPath().get("batchId").toString(); 
+		}
+		this.batchId = batchId;
 		sendDeleteBatchId(batchId);
 	}
 	
