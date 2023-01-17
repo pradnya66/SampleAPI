@@ -263,8 +263,8 @@ public class BatchPostStepDefinition extends BaseClass {
 		logger.info("Post request sent with null value for  batchStatus parameter");
 		
 		//use delete request to delete the posted data//
-		JsonPath js = response.jsonPath();
-		int batchId = js.getInt("batchId");
+		JsonPath js = response.getBody().jsonPath();
+		String batchId = js.get("batchId");
 		System.out.println("batchId:"+batchId);
 		response = this.request
 				.when()

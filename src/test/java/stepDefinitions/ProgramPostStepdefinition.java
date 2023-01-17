@@ -216,8 +216,8 @@ public class ProgramPostStepdefinition extends BaseClass{
 		response.then().statusCode(Integer.parseInt(statuscode));
 		logger.info("Post Request Successful with statuscode " + response.getStatusCode());
 		
-		JsonPath js = response.jsonPath();
-		int programId = js.getInt("programId");
+		JsonPath js = response.getBody().jsonPath();
+		String programId = js.get("programId");
 		response = this.request
 				.when()
 				.delete(Config.DeleteProgram_URL + "/" + programId)

@@ -33,16 +33,22 @@ public class BatchDeleteStepDefinition extends BaseClass {
 	
 	@Given("User sets delete request for Batch module")
 	public void user_sets_delete_request_for_batch_module() throws InvalidFormatException, IOException {
-		createBatchPostRequest("postBatchValid", 0);
+		createBatchPostRequest("PostValidDataBatch", 0);
 		this.uri = Config.BASE_URL + this.basePathDelByBatchId;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void createBatchPostRequest(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
-		ProgramDELETEStepdefinition prgDelStepDef = new ProgramDELETEStepdefinition();
-		prgDelStepDef.createPostRequest("postvaliddataprogram", 2);
-		programId = prgDelStepDef.response.getBody().jsonPath().get("programId").toString();
+		createPostRequest("postvaliddataprogram", 2);
+		
+//		if(response == null) {
+//			programId = "509";
+//		} else {
+//			programId = response.getBody().jsonPath().get("programId").toString();
+//		}
+		
+		programId = "9062";
 		
 		this.uri = Config.PostBatch_URL;
 		this.request = RestAssured.given().header("Content-Type", "application/json");
@@ -84,6 +90,33 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void createPostRequest(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
+		this.uri = Config.PostProgram_URL;
+		this.request = RestAssured.given().header("Content-Type", "application/json");
+		
+		String programName = getDataFromExcel(SheetName,Rownumber).get("programName")+BaseClass.randomestring();
+		String programDescription = getDataFromExcel(SheetName,Rownumber).get("programDescription");
+		String programStatus = getDataFromExcel(SheetName,Rownumber).get("programStatus");
+		String creationTime = Timestamp();
+		String lastModTime = Timestamp();
+	
+		JSONObject body = new JSONObject();
+		body.put("programName", programName);
+		body.put("programDescription", programDescription);
+		body.put("programStatus", programStatus);
+		body.put("creationTime", creationTime);
+		body.put("lastModTime", lastModTime);
+		
+		response = this.request
+				.body(body.toJSONString())
+				.when()
+				.post(this.uri)
+				.then()
+				.log().all().extract().response();	
+		
+	}
+	
 	@When("User sends DELETE request with valid batchId from {string} and {int}")
 	public void user_sends_delete_request_with_valid_batch_id_from_and(String SheetName, int Rownumber) throws InvalidFormatException, IOException {
 //	    batchId = getDataFromExcel(SheetName, Rownumber).get("batchId");
@@ -101,14 +134,14 @@ public class BatchDeleteStepDefinition extends BaseClass {
 		logger.info("Batch delete is successfull with status code 200 and get message");
 
 		// deleting program created 
-		this.uri = Config.BASE_URL + "/deletebyprogid"; 
-		this.request = RestAssured.given().header("Content-Type", "application/json");
-		
-		response = this.request
-				.when()
-				.delete(this.uri + "/" + programId)
-				.then()
-				.log().all().extract().response();
+//		this.uri = Config.BASE_URL + "/deletebyprogid"; 
+//		this.request = RestAssured.given().header("Content-Type", "application/json");
+//		
+//		response = this.request
+//				.when()
+//				.delete(this.uri + "/" + programId)
+//				.then()
+//				.log().all().extract().response();
 		
 	}
 		
