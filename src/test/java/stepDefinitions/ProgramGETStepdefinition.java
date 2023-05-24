@@ -41,6 +41,7 @@ public class ProgramGETStepdefinition extends BaseClass{
 		//Statuscode Validation
 		int GetAllstatuscode = response.getStatusCode();
 		if (GetAllstatuscode == 200) {
+		response.then().assertThat().statusCode(GetAllstatuscode);
 		response.then().statusCode(Integer.parseInt(statuscode));
 		//Header Validation
 		response.then().assertThat().header("Connection", "keep-alive");
